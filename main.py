@@ -7,9 +7,8 @@ wordList = []
 wordGroups = {}
 
 # Loads dictionary
-f = open('unsortedDict.txt', 'r')
-for line in f:
-    wordList.append(line.strip())
+f = open('words.txt', 'r')
+
 
 nodes = []
 
