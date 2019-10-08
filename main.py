@@ -1,3 +1,11 @@
+"""
+Matt Prodani
+10/7/2018
+A recursive solver for the New York Times 'Letter Boxed' Game
+Returns most 2 or 3 word solutions
+"""
+
+
 from Gameboard import Gameboard
 from Dictionary import Dictionary
 import copy
@@ -85,7 +93,9 @@ dict = Dictionary(words, mainBoard)
 results = findGameboards(mainBoard)
 
 
-# Prints solutions
+# Prints solutions which are stored as a dictionary of solutions
+# with solution word count as keys
+# {"1": [["word1"], ["word2"]], }
 solutions = {}
 for res in results:
     solWords = res.getWords()
@@ -94,9 +104,7 @@ for res in results:
     else:
         solutions[len(solWords)] = [solWords]
 
-print("2 Words Solutions:")
-for sol in solutions[2]:
-    print(sol)
-print("3 Word Solutions")
-for sol in solutions[3]:
-    print(sol)
+for key in sorted(solutions.keys()):
+    print(str(key) + " Word Solutions: ")
+    for sol in solutions[key]:
+        print(sol)
