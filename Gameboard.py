@@ -18,6 +18,9 @@ class Gameboard():
         self.words = []
 
 
+    def getGameboard(self):
+        return self.gameboard
+
     def getWords(self):
         return self.words
 
