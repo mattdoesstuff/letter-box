@@ -33,7 +33,6 @@ def findGameboards(currGameboard):
     for key in mostEfficient:
         gboard = copy.deepcopy(currGameboard)
         gboard.addWord(mostEfficient[key][1])
-        gboard.fixUsed()
         nextBoards = findGameboards(gboard)
         for board in nextBoards:
             if isinstance(board, Gameboard):
