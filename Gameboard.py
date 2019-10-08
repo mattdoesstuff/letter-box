@@ -7,39 +7,57 @@ class Gameboard():
         self.used = []
         self.words = []
 
+        # FOR # DEBUG:
+    def getUsed(self):
+        return self.used
+    def getUnused(self):
+        return self.unused
+        # END FOR DEBUG
 
-    def getGameboardLength():
-        return len(this.gameboard)
 
 
-#   Adds a word to gameboard and fixes corresponding arrays
-    def addWord(word):
+
+    def getWords(self):
+        return self.words
+
+    def getGameboardLength(self):
+        return len(self.gameboard)
+
+
+    def isSolved(self):
+        if len(self.unused) == 0:
+            return True
+        return False
+
+    def addWord(self, word):
+        ''' Adds a word to gameboard and fixes corresponding arrays '''
         self.words.append(word)
         remove = []
         tempUnused = []
         for c in word:
-            if c in this.unused:
-                this.used.append(c)
+            if c in self.unused:
+                self.used.append(c)
                 remove.append(c)
-        for c in this.unused:
+        for c in self.unused:
             if c not in remove:
                 tempUnused.append(c)
-        this.unused = tempUnused
+        self.unused = tempUnused
 
-    def checkAgainstDict(dict):
 
+    def wordCount(self):
+        return len(self.words)
 
 
 
     def fixUsed(self):
         """ Removes used characters from gameboard sections """
-        tempUnused = []
-        # for c in self.used:
-        #     tempUnused.append(c)
-        # for c in self.unused:
-        #     if c not in tempUnused:
-        #         tempUnused.append(c)
-        # self.unused = tempUnused
+        tempUsed = []
+        for word in self.words:
+            for c in word:
+                if c not in tempUsed:
+                    tempUsed.append(c)
+        self.unused = list(set(self.gameboard) - set(tempUsed))
+        self.used = tempUsed
 
 # TODO Add Different Goals
     def checkWord(self, word):
@@ -53,11 +71,15 @@ class Gameboard():
         efficiency = 0
         prevLetter = word[0].upper()
 
+        if len(self.words) > 0:
+            if self.words[-1][-1] != prevLetter.upper():
+                return -1
+
         used = self.used
         unused = self.unused
 
         if prevLetter not in used:
-            used.append(prevLetter)
+            used.append(prevLetter.upper())
             efficiency += 1
         for i in range(1, len(word)):
             currLetter = word[i].upper()
@@ -68,8 +90,6 @@ class Gameboard():
                         efficiency += 1
                     prevLetter = currLetter
                 else:
-                    print(currLetter + prevLetter)
-                    print(self.gameboard.index(currLetter))
                     return -1
             except(ValueError):
                 return -1

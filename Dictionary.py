@@ -1,23 +1,22 @@
 class Dictionary():
-    def __init__(this, dictionary):
+    def __init__(self, dictionary):
         """ Builds a dictionary object containing a list of words as well as groups them into a Dictionary
         separated by word length
         """
         wordList = []
-        this.wordGroups = {}
+        self.wordGroups = {}
         # Converts text file to list
-        for line in dictionary:
-            wordList.append(line.strip())
         # Populates a dictionary with word groups based on length
-        for word in wordList:
-            if len(word) in this.wordGroups.keys():
-                this.wordGroups[len(word)].append(word)
+        # dictionary = ["alcove", "equalizing", "equivocal", "clove", "anglicize", "convene", "cozenage", "lazing", "laicizing", "legalizing", "novocaine"]
+        for line in dictionary:
+            word = line.strip().upper()
+            if len(word) in self.wordGroups.keys():
+                self.wordGroups[len(word)].append(word)
             else:
-                this.wordGroups[len(word)] = [word]
-    def getKeys(this):
+                self.wordGroups[len(word)] = [word]
+    def getKeys(self):
         """ Returns a list of valid keys corresponding to groups by word length """
-        return sorted(list(this.wordGroups.keys()), reverse = True)
-    def getWords(this, key):
+        return sorted(list(self.wordGroups.keys()), reverse = True)
+    def getWords(self, key):
         """ Gets words from dictionary with a given length """
-        return this.wordGroups[key]
-    
+        return self.wordGroups[key]
