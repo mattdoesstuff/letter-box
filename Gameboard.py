@@ -7,9 +7,8 @@ class Gameboard():
         Used letters
         Words Used
         String literal for the gameboard itself
-
-
     """
+
     def __init__(self, board):
         """ Constructs a gameboard object given the characters as a string """
         self.gameboard = board
@@ -49,9 +48,10 @@ class Gameboard():
         prevLetter = word[0].upper()
 
         # Checks if last letter of last word matches next
-        if len(self.words) > 0:
-            if self.words[-1][-1] != prevLetter.upper():
-                return -1
+        # Disabled because the words provided will already have this property
+        # if len(self.words) > 0:
+        #     if self.words[-1][-1] != prevLetter.upper():
+        #         return -1
 
         used = set(self.used)
         unused = set(self.unused)
